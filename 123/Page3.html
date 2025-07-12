@@ -31,10 +31,13 @@
         .input-area input[type="text"] {
             padding: 10px;
             margin-right: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid transparent; /* 改為透明邊框 */
             border-radius: 4px;
             width: 70%;
             box-sizing: border-box;
+            background: rgba(255,255,255,0.8); /* 可選：讓輸入框更易讀 */
+            text-align: center; /* 讓輸入內容置中 */
+            font-size: 1.5em;   /* 放大字體 */
         }
         .input-area button {
             padding: 10px 20px;
@@ -80,7 +83,8 @@
     <h1>多拉A夢生活百寶袋</h1>
     <div class="input-area">
         <input type="text" id="user-input" placeholder="輸入需求描述">
-        <button onclick="goToLoadingPage()">送出</button>
+        <br>
+        <button onclick="goToLoadingPage()" style="margin-top:16px;">送出</button>
     </div>
     <div id="ai-output"></div>
     <div class="social">
@@ -93,7 +97,7 @@ function goToLoadingPage() {
     const userInput = document.getElementById('user-input').value;
     // 將輸入暫存到 localStorage 以便下一頁取得
     localStorage.setItem('userInput', userInput);
-    window.location.href = 'Page4-loding page.html';
+    window.location.href = 'Page4-loding%20page.html';
 }
 </script>
 </body>
