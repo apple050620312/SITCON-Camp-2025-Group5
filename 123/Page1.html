@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: "Huninn", sans-serif;
+        background-color: #b0d4e5; /* 淺藍色背景 */
+        color: #004080; /* 深藍色文字 (雖然大部分文字是圖片，但保留作為預設) */
+        font-size: 16px;
+        display: flex; /* 使用 Flexbox 佈局 */
+        justify-content: center; /* 水平居中主要內容 */
+        align-items: center; /* 垂直居中主要內容 */
+        min-height: 100vh; /* 讓 body 佔滿整個視窗高度 */
+        margin: 0; /* 移除 body 預設邊距 */
+        position: relative; /* 為絕對定位的元素提供參考點 */
+        overflow: hidden; /* 防止絕對定位元素超出 body 範圍時出現滾動條 */
+      }
+
+      /* 讓整個頁面內容可點擊的連結樣式 */
+      .full-page-link {
+          display: block; /* 讓連結佔滿其父容器的空間 */
+          width: 100%;
+          height: 100vh; /* 讓連結佔滿整個視窗高度 */
+          text-decoration: none; /* 移除下劃線 */
+          color: inherit; /* 繼承父元素的文字顏色 */
+          position: relative; /* 允許內部元素使用絕對定位 */
+      }
+
+      /* 哆啦A夢角色圖片樣式 */
+      .doraemon-character {
+          position: absolute; /* 絕對定位 */
+          left: 10%; /* 距離左邊緣 10% */
+          top: 50%; /* 距離頂部 50% */
+          transform: translateY(-50%); /* 向上移動自身高度的一半，實現垂直居中 */
+          height: 300px; /* 調整圖片高度 */
+          /* 您可能需要根據實際圖片和螢幕大小調整 left 和 height */
+      }
+
+      /* 鈴鐺圖標樣式 */
+      .bell-icon {
+          position: absolute; /* 絕對定位 */
+          top: 20px; /* 距離頂部 20px */
+          right: 20px; /* 距離右邊緣 20px */
+          height: 50px; /* 調整圖片高度 */
+          /* 您可能需要根據實際圖片調整 top, right 和 height */
+      }
+
+      /* 主要內容容器樣式 (標誌, 中文文字圖片, press to start 圖片) */
+      .main-content {
+          position: absolute; /* 絕對定位 */
+          left: 50%; /* 水平居中 */
+          top: 40%; /* 調整垂直位置，使其稍微靠上 */
+          transform: translateX(-50%); /* 調整以確保水平居中 */
+          display: flex;
+          flex-direction: column; /* 垂直排列子元素 */
+          align-items: center; /* 子元素水平居中 */
+          text-align: center; /* 文字居中 (對圖片無效，但保留) */
+      }
+
+      /* 哆啦A夢標誌圖片樣式 */
+      .doraemon-logo {
+          height: 100px; /* 調整圖片高度 */
+          margin-bottom: 20px; /* 標誌下方間距 */
+          /* 您可能需要根據實際圖片調整 height */
+      }
+
+      /* 中文文字圖片樣式 */
+      .chinese-text-image {
+          height: 50px; /* 調整圖片高度 */
+          margin-bottom: 30px; /* 圖片下方間距 */
+          /* 您可能需要根據實際圖片調整 height */
+      }
+
+      /* "press to start" 文字圖片樣式 */
+      .press-start-image {
+          height: 30px; /* 調整圖片高度 */
+          /* 您可能需要根據實際圖片調整 height */
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- 將整個頁面內容包裹在連結中 -->
+    <a href="Page2.html" class="full-page-link">
+        <!-- 哆啦A夢角色圖片 -->
+        <img src="http://upload.cc/i1/2025/07/12/sKYHLr.png" alt="Doraemon Character" class="doraemon-character">
+
+        <!-- 主要內容區塊 -->
+        <div class="main-content">
+            <!-- 哆啦A夢標誌圖片 -->
+            <img src="http://upload.cc/i1/2025/07/12/L5j7fW.png" alt="Doraemon Logo" class="doraemon-logo">
+            <!-- 中文文字圖片 -->
+            <img src="http://upload.cc/i1/2025/07/12/QfCM4O.png" alt="道具推薦器" class="chinese-text-image">
+            <!-- "press to start" 文字圖片 -->
+            <img src="http://upload.cc/i1/2025/07/12/0WkjF4.png" alt="-press to start-" class="press-start-image">
+        </div>
+
+        <!-- 鈴鐺圖標 -->
+        <img src="http://upload.cc/i1/2025/07/12/rVCTSd.png" alt="Bell Icon" class="bell-icon">
+    </a>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href="Page4-loding page.css"/>
+        <style>
+            .full-page-link {
+                display: block;
+                width: 100vw;
+                height: 100vh;
+                text-decoration: none;
+                color: inherit;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="semiTransparenDiv" style="display:none;"></div>
+        <img src="src/動圖.gif">
+        <script>
+        // 進入本頁時自動顯示 loading，並自動送出 API 請求
+        window.onload = function() {
+            document.getElementById("semiTransparenDiv").style.display = "block";
+            // 取得上一頁輸入
+            const userInput = localStorage.getItem('userInput') || '';
+            fetch('http://127.0.0.1:5000/get_item', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: userInput })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                // 回傳結果存到 localStorage
+                localStorage.setItem('aiResponse', data.full_response || '');
+                // 跳轉到第五頁
+                window.location.href = 'page5-outcome.html';
+            })
+            .catch(error => {
+                localStorage.setItem('aiResponse', '發生錯誤，請稍後再試。' + error.message);
+                window.location.href = 'page5-outcome.html';
+            });
+        }
+        </script>
+    </body>
+</html>
