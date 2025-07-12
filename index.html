@@ -1,0 +1,167 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 道具搜尋</title>
+    <style>
+        body {
+            /* Keep background styles */
+            background-image: url('img/backgroundimage.png'); /* 請將 'your-image-path.png' 替換為你的圖片路徑 */
+            background-size: cover;
+            background-position: center center; /* Center the background image */
+            /* background-position: center center; */ 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Set position relative for absolute positioning of children */
+            position: relative;
+            /* Remove flex display from body */
+            /* display: flex; */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            overflow-x: hidden; /* Prevent horizontal scrollbar if elements go out of bounds */
+        }
+
+        /* Style for the input and button container */
+        .input-area {
+            position: absolute;
+            /* Approximate positioning - needs adjustment based on background image */
+            top: 60%; /* 調整這個值來控制搜尋框和按鈕的垂直位置 */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            text-align: center; /* Center inline elements */
+            z-index: 1; /* Ensure it's above other elements */
+            width: 50%; /* 調整寬度 */
+            max-width: 500px; /* 設定最大寬度 */
+        }
+
+        .input-area input[type="text"] {
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 70%; /* 調整輸入框寬度 */
+            box-sizing: border-box;
+        }
+
+        .input-area button {
+            padding: 10px 20px;
+            /* border:AI 道具AI 道具搜尋系統搜尋系統 none; */ /* 移除無邊框 */
+            border: 1px solid white; /* 設定白色邊框 */
+            border-radius: 4px;
+            /* background-color: #007bff; */ /* 移除藍色背景 */
+            background-color: white; /* 設定白色背景 */
+            /* color: white; */ /* 移除白色文字 */
+            color: #007bff; /* 設定藍色文字 */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-area button:hover {
+            background-color: #e9e9e9; /* 滑鼠懸停時背景稍微變灰 */
+            color: #0056b3; /* 滑鼠懸停時文字顏色變深 */
+            border-color: #e9e9e9; /* 滑鼠懸停時邊框顏色變灰 */
+        }
+
+        /* Style for the AI output div */
+        #ai-output {
+            position: absolute;
+            
+            /* Approximate positioning - needs adjustment based on background image */
+            top: 54%; /* 調整這個值來控制對話框的垂直位置，往下移 */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            width: 45%; /* 調整寬度以符合半圓的寬度 */
+            height: 416px; /* 調整高度以符合半圓的高度 */
+            border: 1px solid #ccc;
+            overflow: auto; /* 保持捲軸，以便內容超出時可以捲動 */
+            padding: 15px; /* 增加內邊距 */
+            background-color: rgba(255, 255, 255, 0.85); /* Add a semi-transparent background for readability */
+            z-index: 1; /* Ensure it's above background */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            /* border-radius: 10px; /* Remove previous border-radius */
+            border-top-left-radius: 0; /* 頂部左角無圓角 */
+            border-top-right-radius: 0; /* 頂部右角無圓角 */
+            border-bottom-left-radius: 50% 100%; /* 底部左角半圓形 (水平半徑 50%, 垂直半徑 100%) */
+            border-bottom-right-radius: 50% 100%; /* 底部右角半圓形 (水平半徑 50%, 垂直半徑 100%) */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 增加陰影 */
+        }
+
+        /* Style for the main title */
+        h1 {
+            position: fixed; /* Use absolute positioning relative to body */
+            top: 1%; /* 調整這個值來控制標題的垂直位置，使其位於紅色範圍內 */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            z-index: 1; /* Ensure it's above other elements */
+            text-align: center; /* Center the text inside the h1 */
+            width: 100%; /* Allow h1 to take full width for centering */
+            font-size: 2em; /* Default font size */
+            font-weight: bold; /* 設定粗體 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 增加文字陰影 */
+            letter-spacing: 2px; /* 增加字母間距 */
+            min-width: 300px; /* Add min-width here */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Main title -->
+    <h1>多拉A夢生活百寶袋</h1>
+
+    <!-- Input and button moved into a container -->
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="輸入需求描述">
+        <button onclick="getAIResponse()">送出</button>
+    </div>
+
+    <!-- AI output div -->
+    <!-- <div id="ai-output"></div> -->
+
+    <!-- Images div -->
+    <!-- <div id="images"></div> -->
+
+<script>
+function getAIResponse(){
+    const userInput = document.getElementById('user-input').value;
+    const aiOutputDiv = document.getElementById('ai-output');
+
+    // Clear previous AI output and add a loading message
+    aiOutputDiv.innerHTML = '<p><strong>AI：</strong>思考中...</p>';
+    // const imagesDiv = document.getElementById('images'); // Removed
+    // imagesDiv.innerHTML = ''; // Clear old images // Removed
+
+
+    fetch('http://127.0.0.1:5000/get_item', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: userInput })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Clear loading message
+        aiOutputDiv.innerHTML = '';
+        aiOutputDiv.innerHTML += `<p><strong>AI：</strong>${data.full_response}</p>`;
+
+        // Removed image handling as the div is removed
+        // data.images.forEach(url => {
+        //     const img = document.createElement('img');
+        //     img.src = url;
+        //     imagesDiv.appendChild(img);
+        // });
+    })
+    .catch(error => {
+        console.error('錯誤：', error);
+        aiOutputDiv.innerHTML = `<p><strong>AI：</strong>發生錯誤，請稍後再試。</p><p>錯誤訊息: ${error.message}</p>`;
+        // imagesDiv.innerHTML = ''; // Clear images on error // Removed
+    });
+}
+</script>
+</body>
+</html>
