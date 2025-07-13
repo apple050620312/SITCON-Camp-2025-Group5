@@ -134,7 +134,7 @@ function getAIResponse(){
     // imagesDiv.innerHTML = ''; // Clear old images // Removed
 
 
-    fetch('http://127.0.0.1:5000/get_item', {
+    fetch('http://udp.cfh.tw:50607/get_item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: userInput })
