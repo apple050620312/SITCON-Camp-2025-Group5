@@ -36,9 +36,9 @@
     </head>
     <body>
         <div class="loading-container">
-            <img src="http://upload.cc/i1/2025/07/12/KPe9rO.gif" alt="Loading animation">
+            <img src="../img/LINE 官方貼圖 - Doraemon Animated Stickers Example with GIF Animation.gif" alt="Loading animation">
             <!-- 加入新的圖片標籤來顯示 "loading..." -->
-            <img src="http://upload.cc/i1/2025/07/13/w1INHR.png" alt="Loading" class="loading-text-image">
+            <img src="../img/w1INHR.png" alt="Loading" class="loading-text-image">
             <!-- 移除或註解掉原來的文字標籤 -->
             <!-- <p class="loading-text">loading...</p> -->
         </div>
@@ -48,7 +48,7 @@
         window.onload = function() {
             // 取得上一頁輸入
             const userInput = localStorage.getItem('userInput') || '';
-            fetch('http://127.0.0.1:5000/get_item', {
+            fetch('http://udp.cfh.tw:50607/get_item', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: userInput })
