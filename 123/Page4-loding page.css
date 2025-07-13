@@ -1,5 +1,11 @@
 body {
-    background-color: #6CC4EE;
+    background-color: rgb(118, 221, 255); /* 設定背景顏色為淺藍色 */
+    display: flex; /* 使用 Flexbox 置中內容 */
+    justify-content: center; /* 水平置中 */
+    align-items: center; /* 垂直置中 */
+    min-height: 100vh; /* 確保 body 佔滿整個視窗高度 */
+    margin: 0; /* 移除預設邊距 */
+    overflow: hidden; /* 防止出現捲軸 */
 }
 
 #ExecButton {
@@ -8,29 +14,29 @@ body {
 }
 
 #semiTransparenDiv {
-	width:100%;
+    width:100%;
     position:fixed;
     left:0;
     right:0;
     top:0;
     bottom:0;
-    
+
     margin-bottom: 40px;
     margin-top: 60px;
-    
-    background-color: rgba(255,255,255,0.7);
+
+    background-color: rgba(126, 249, 253, 0.7);
     z-index:9999;
-    display: none; 
+    display: none;
 }
 
 @-webkit-keyframes spin {
-	from {-webkit-transform:rotate(0deg);}
-	to {-webkit-transform:rotate(360deg);}
+    from {-webkit-transform:rotate(0deg);}
+    to {-webkit-transform:rotate(360deg);}
 }
 
 @keyframes spin {
-	from {transform:rotate(0deg);}
-	to {transform:rotate(360deg);}
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
 
 #semiTransparenDiv::after {
@@ -41,11 +47,69 @@ body {
     width:100px;height:100px;
     border-style:solid;
     border: 5px solid black;
-	border-top-color: #00a1e9;
+    border-top-color: #00a1e9;
     border-width: 7px;
     border-radius:50%;
     -webkit-animation: spin .8s linear infinite;
-    
+
     /* Lets make it go round */
     animation: spin .8s linear infinite;
+}
+
+.loading-container {
+    /* 保持現有的置中樣式 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    /* 如果背景圖片已經有載入圖案和文字，這裡的半透明背景可以移除或註解掉 */
+    background-color: transparent; /* 將背景設為透明 */
+    text-align: center; /* 置中容器內的圖片和文字 */
+}
+
+.loading-container img {
+    /* 如果背景圖片已經包含載入圖案，這裡的 img 標籤可以移除 */
+    display: block; /* 確保圖片是區塊元素 */
+    margin: 0 auto; /* 如果容器比圖片寬，則置中圖片 */
+    /* 您可以根據需要調整圖片大小 */
+    /* width: 150px; */
+    /* height: auto; */
+}
+
+.loading-text {
+    /* 如果背景圖片已經包含 "loading..." 文字，這裡的 p 標籤可以移除 */
+    display: none; /* 隱藏 p 標籤 */
+    /* 根據您的背景圖片調整文字顏色，使其清晰可見 */
+    color: #007bff; /* 設定文字顏色為藍色 */
+    font-size: 1.5em; /* 設定文字大小 */
+    font-family: sans-serif; /* 設定字體 */
+    margin-top: 10px; /* 設定圖片和文字之間的間距 */
+}
+
+.loading-text-image {
+    display: block; /* 確保圖片顯示為區塊元素 */
+    margin: 0 auto; /* 水平置中圖片 */
+    margin-top: 10px; /* 設定圖片與上方元素的間距 */
+    /* 您可以根據需要調整圖片大小 */
+    /* width: auto; */
+    /* height: 50px; */
+}
+
+/* 保留 .full-page-link 樣式如果需要 */
+.full-page-link {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    text-decoration: none;
+    color: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }

@@ -11,7 +11,16 @@
     <style>
 
 body {
-    background-color: #ffffff;
+    /* 設定背景圖片 */
+    background-image: url('https://upload.cc/i1/2025/07/13/5wlNqU.png'); /* 請將 '您的背景圖片連結放在這裡' 替換為您的圖片 URL */
+    background-size: contain; /* 將背景圖片完整顯示在區域內 */
+    background-position: center center; /* 將背景圖片置中 */
+    background-repeat: no-repeat; /* 防止背景圖片重複 */
+    background-attachment: fixed; /* 讓背景圖片固定，不隨捲動移動 */
+    background-color: transparent; /* 移除紫色背景 */
+    margin: 0; /* 移除預設邊距 */
+    overflow: hidden; /* 防止出現捲軸 */
+    position: relative; /* 設定 body 為定位參考點 */
 }
 
 a {
@@ -23,16 +32,19 @@ a {
 
 .modal-header h3 {
     font-size: 30px;
-    color: #00a1e9;
+    color: #111; /* 改為黑色 */
     /* 置中 */
     position: absolute;
-    top: 7%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .modal-content {
-    background-color: green;
+    /* background-color: green; */
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .modal-body form .account,
@@ -63,15 +75,59 @@ a {
     left: 0;
     z-index: 10;
 }
+
+/* 設定 AI 回應的位置和樣式 */
+#ai-result {
+    position: absolute; /* 絕對定位 */
+    top: 50%; /* 垂直置中 */
+    left: 50%; /* 水平置中 */
+    transform: translate(-50%, -50%); /* 精確置中 */
+    width: 60%; /* 調整寬度 */
+    text-align: center; /* 文字置中 */
+    /* 您可能需要根據實際圖片和內容調整這些值 */
+    /* padding: 20px; */ /* 可選：增加內邊距 */
+    /* background-color: rgba(255, 255, 255, 0.8); */ /* 可選：半透明背景 */
+    /* transform: rotate(-5deg); */ /* 可選：如果需要旋轉以匹配筆記本角度 */
+    font-size: 1.5em; /* 調整字體大小 */
+    color: #333; /* 調整文字顏色 */
+    z-index: 1; /* 確保它在背景圖片之上 */
+}
+
+/* 新增 "再產生一個道具" 按鈕的樣式 */
+.generate-again-button {
+    position: fixed; /* 固定位置 */
+    bottom: 20px; /* 距離底部 20px */
+    right: 20px; /* 距離右側 20px */
+    padding: 10px 20px; /* 內邊距 */
+    background-color: #00a1e9; /* 背景顏色 */
+    color: white; /* 文字顏色 */
+    text-decoration: none; /* 移除下劃線 */
+    border-radius: 5px; /* 圓角 */
+    font-size: 1.2em; /* 字體大小 */
+    z-index: 100; /* 確保按鈕在最上層 */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 陰影效果 */
+}
+
+.generate-again-button:hover {
+    background-color: #007bff; /* 滑鼠懸停時的背景顏色 */
+}
+
     </style>
 
 </head>
 
-<body1>
-    <a href="Page1.html" class="full-page-link" title="點擊回到第一頁"></a>
-    <div id="ai-result" style="margin:40px;font-size:1.5em;"></div>
-    <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">會員登入</a>
+<body>
+    <!-- 移除或註解掉這個全頁連結 -->
+    <!-- <a href="Page1.html" class="full-page-link" title="點擊回到第一頁"></a> -->
 
+    <!-- 取消註解 AI 回應的 div -->
+    <div id="ai-result"></div>
+
+    <!-- 移除或註解掉這個連結，因為您可能不需要它了 -->
+    <!-- <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">施工中，重新導向主頁</a> -->
+
+    <!-- 移除或註解掉這個 Modal，因為它似乎是另一個功能 -->
+    <!--
     <div class="modal fade" id="loginModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -88,60 +144,41 @@ a {
                         <a href="#" type="button" class="member">派對</a>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
-    </body>
-    </html><body>
-        <!-- 按鈕 -->
+    -->
 
-        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">按鈕</a>
-
-        <div class="modal fade" id="loginModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Header -->
-                    <div class="modal-header">
-                        <h3>Outcome</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <!-- Body -->
-                    <div class="modal-body">
-                        <!-- 登入表單 -->
-                        <form>
-                            <!-- email -->
-                            <div class="form-group">
-                                <input type="email" class="account form-control" placeholder="Email">
-                            </div>
-                            <!-- password -->
-                            <div class="form-group">
-                                <input type="password" class="password form-control" placeholder="Password">
-                            </div>
-                            <!-- checkbox -->
-                            <div class="form-group">
-                                <input type="checkbox" class="remember">記住我的密碼
-                            </div>
-                            <!-- 送出按鈕 -->
-                            <button type="button" class="btn btn-info">結果出爐</button>
-                        </form>
-
-                    </div>
-                    <!-- Footer -->
-                    <div class="modal-footer">
-                        <div class="signup">
-                            <span>屁眼</span>
-                            <a href="#" type="button" class="member">菜就多練</a>
-                        </div>
+    <!-- 移除或註解掉這個 Modal 如果您不需要它 -->
+    <!--
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header">
+                    <h3>Outcome</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Body -->
+                <div class="modal-body">
+                    <!-- 登入表單 -->
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    -->
+
     <script>
-    // 進入本頁時自動顯示 AI 回應
+    // 取消註解顯示 AI 回應的 JavaScript 程式碼
     window.onload = function() {
         var aiResult = localStorage.getItem('aiResponse') || '無AI回應';
-        document.getElementById('ai-result').innerHTML = '<strong>AI：</strong>' + aiResult;
+        document.getElementById('ai-result').innerHTML = '<strong>哆拉A夢：</strong>' + aiResult;
     }
     </script>
+
+    <!-- 新增的 "再產生一個道具" 按鈕 -->
+    <a href="Page3.html" class="generate-again-button">再產生一個道具</a>
+
+</body>
+</html>

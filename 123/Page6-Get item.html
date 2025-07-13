@@ -19,17 +19,7 @@
                 background-position: center;
                 background-size: cover;
             }
-
-
-
- 
-
-
-
-
-
-
-            
+  
             a {
                 text-decoration: none;
                 font-size: 30px;
@@ -48,7 +38,17 @@
             }
 
             .modal-content {
-                background-color: #404580;
+                background-color<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>: #404580;
             }
 
             .modal-body form .account,
@@ -68,52 +68,6 @@
                 color: white;
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </style>
 
         <meta charset="UTF-8">
@@ -126,45 +80,31 @@
             <source src="src/拿出道具音效.mp3" type="audio/mpeg">
         </audio>
 
-
-        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">拿出道具</a>
-
-        <!-- 跳出視窗內容 -->
-
-        <div class="modal fade" id="loginModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Header -->
-                    <div class="modal-header">
-                        <h3>適合你的道具是...任意門！！</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <!-- Body -->
-                    <div class="modal-body">
-                        <!-- 登入表單 -->
-                        <form>
-                            <center><img src="src/Tool/1.png"></center>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <!-- 動態顯示道具標題與圖片 -->
+        <h2 id="item-title" style="text-align:center; margin-top:32px; color:#062cc6; text-shadow: 2px 2px 8px #29318b; font-size:2em;"></h2>
+        <div class="modal-content" style="max-width:400px; margin: 40px auto 0 auto; background: none; border-radius: 0; box-shadow: none; border: none;">
+            <div class="modal-body" style="text-align: center; background: none;">
+                <img id="item-img" src="src/Tool/4.png" style="max-width: 100%; margin: 20px 0;">
             </div>
-        </div>        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </div>
+        <a href="page5-outcome.html" class="btn btn-primary" style="position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em; z-index: 20;">道具介紹</a>
+        <script>
+        // 取得 aiResponse 並顯示道具名稱
+        window.onload = function() {
+            // 取得 aiResponse，假設格式為 { name: '任意門', ... }
+            let aiResponse = localStorage.getItem('aiResponse');
+            let itemName = '任意門';
+            if (aiResponse) {
+                try {
+                    let data = JSON.parse(aiResponse);
+                    if (data && data.name) itemName = data.name;
+                } catch(e) {
+                    // 若不是 JSON 格式，直接顯示內容
+                    itemName = aiResponse;
+                }
+            }
+            document.getElementById('item-title').textContent = `適合你的道具是${itemName}！！`;
+        }
+        </script>
     </body>
 </html>

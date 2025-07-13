@@ -30,9 +30,7 @@ def get_item():
             return jsonify({"error": "請提供 prompt", "images": [], "item_name": ""}), 400
 
         ai_prompt = (
-            f"根據使用者需求從卡通「哆拉A夢」中找出符合條件的一個道具名稱，\n"
-            f"使用繁體中文進行回應，開頭統一格式：「道具名稱：<道具名稱>」，換行兩行之後下面使用 100 字描述道具的特性和用途，必須確保道具的真實性，要有相關的考據來源但不用輸出，禁止憑空生成不存在的道具，\n\n"
-            f"以下是使用者需求：{user_prompt}"
+            f"根據使用者需求從卡通「哆拉A夢」中找出符合條件的一個道具名稱。使用繁體中文進行回應，開頭統一格式：「道具名稱：<道具名稱>」。加入兩個 <br> 之後下面使用 100 字描述道具的特性和用途。必須確保道具的真實性。要有相關的考據來源但不用輸出，禁止憑空生成不存在的道具。模仿「哆拉A夢」這個角色的語氣及口頭禪回應使用者，例如「真拿你沒辦法！」或「誰說我沒有的！」等。以下是使用者的需求：{user_prompt}，請開始回覆。"
         )
         response = model.generate_content(ai_prompt)
         ai_text = response.text.strip()
@@ -41,28 +39,28 @@ def get_item():
         print("解析出道具名稱：", repr(item_name))
 
         # 圖片搜尋
-        params = {
-            'q': item_name,
-            'searchType': 'image',
-            'num': 5,
-            'imgSize': 'medium',
-            'key': CSE_API_KEY,
-            'cx': CSE_ID
-        }
-        img_resp = requests.get(SEARCH_URL, params=params)
-        print("圖片搜尋請求網址：", img_resp.url)
+        # params = {
+        #     'q': item_name,
+        #     'searchType': 'image',
+        #     'num': 5,
+        #     'imgSize': 'medium',
+        #     'key': CSE_API_KEY,
+        #     'cx': CSE_ID
+        # }
+        # img_resp = requests.get(SEARCH_URL, params=params)
+        # print("圖片搜尋請求網址：", img_resp.url)
 
-        img_resp.raise_for_status()
-        result_json = img_resp.json()
-        pprint.pprint(result_json)
+        # img_resp.raise_for_status()
+        # result_json = img_resp.json()
+        # pprint.pprint(result_json)
 
-        image_urls = [item['link'] for item in result_json.get('items', [])]
-        print("找到的圖片連結：", image_urls)
+        # image_urls = [item['link'] for item in result_json.get('items', [])]
+        # print("找到的圖片連結：", image_urls)
 
         return jsonify({
             "item_name": item_name,
             "full_response": ai_text,
-            "images": image_urls
+            "images": []
         })
 
     except requests.exceptions.HTTPError as e:
