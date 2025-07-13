@@ -58,8 +58,10 @@
                 return response.json();
             })
             .then(data => {
+                console.log(data);
                 // 回傳結果存到 localStorage
                 localStorage.setItem('aiResponse', data.full_response || '');
+                 localStorage.setItem('aiResponseData', JSON.stringify(data));
                 // 跳轉到第六頁
                 window.location.href = 'Page6-Get%20item.html';
             })

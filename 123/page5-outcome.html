@@ -6,112 +6,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
     <style>
+        body {
+            /* 設定背景圖片 */
+            background-image: url('https://upload.cc/i1/2025/07/13/5wlNqU.png');
+            /* 請將 'https://upload.cc/i1/2025/07/13/5wlNqU.png' 替換為您的背景圖片 URL */
+            background-size: contain;
+            /* 將背景圖片完整顯示在區域內 */
+            background-position: center center;
+            /* 將背景圖片置中 */
+            background-repeat: no-repeat;
+            /* 防止背景圖片重複 */
+            background-attachment: fixed;
+            /* 讓背景圖片固定，不隨捲動移動 */
+            background-color: transparent;
+            /* 移除紫色背景 */
+            margin: 0;
+            /* 移除預設邊距 */
+            overflow: hidden;
+            /* 防止出現捲軸 */
+            position: relative;
+            /* 設定 body 為定位參考點 */
+            min-height: 100vh;
+        }
 
-body {
-    /* 設定背景圖片 */
-    background-image: url('https://upload.cc/i1/2025/07/13/5wlNqU.png'); /* 請將 '您的背景圖片連結放在這裡' 替換為您的圖片 URL */
-    background-size: contain; /* 將背景圖片完整顯示在區域內 */
-    background-position: center center; /* 將背景圖片置中 */
-    background-repeat: no-repeat; /* 防止背景圖片重複 */
-    background-attachment: fixed; /* 讓背景圖片固定，不隨捲動移動 */
-    background-color: transparent; /* 移除紫色背景 */
-    margin: 0; /* 移除預設邊距 */
-    overflow: hidden; /* 防止出現捲軸 */
-    position: relative; /* 設定 body 為定位參考點 */
-}
+        a {
+            text-decoration: none;
+            font-size: 30px;
+            color: #00a1e9;
+            margin: 50px;
+        }
 
-a {
-    text-decoration: none;
-    font-size: 30px;
-    color: #00a1e9;
-    margin: 50px;
-}
+        .modal-header h3 {
+            font-size: 30px;
+            color: #111;
+            /* 改為黑色 */
+            /* 置中 */
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-.modal-header h3 {
-    font-size: 30px;
-    color: #111; /* 改為黑色 */
-    /* 置中 */
+        .modal-content {
+            /* background-color: green; */
+            background: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .modal-body form .account,
+        .modal-body form .password {
+            margin: 30px;
+            width: 90%;
+            border-radius: 20px;
+        }
+
+        .remember {
+            margin-bottom: 20px;
+        }
+
+        .modal-body form .btn {
+            width: 100%;
+            font-size: 25px;
+            color: white;
+        }
+
+        .full-page-link {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            text-decoration: none;
+            color: inherit;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* 移除或註解掉原來的 AI 回應位置和樣式 */
+        /*
+#ai-result {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 60%;
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    z-index: 1;
 }
+*/
 
-.modal-content {
-    /* background-color: green; */
-    background: none !important;
-    box-shadow: none !important;
-    border: none !important;
-}
+        /* 設定圖片顯示區域的位置和樣式 */
+        #image-area {
+            position: absolute;
+            /* 絕對定位 */
+            top: 40%;
+            /* 調整這個值來垂直定位到圖片白框位置 */
+            left: 25%;
+            /* 調整這個值來水平定位到圖片白框位置 */
+            width: 25%;
+            /* 調整寬度以適應圖片白框 */
+            height: -60%;
+            /* 調整高度以適應圖片白框 */
+            /* 您可能需要根據實際圖片和內容調整這些值 */
+            /* border: 1px solid blue; */
+            /* 可選：用於調試邊框 */
+            display: flex;
+            /* 使用 Flexbox 置中圖片 */
+            justify-content: center;
+            /* 水平置中圖片 */
+            align-items: center;
+            /* 垂直置中圖片 */
+            overflow: hidden;
+            /* 隱藏超出區域的圖片部分 */
+            z-index: 1;
+            /* 確保它在背景圖片之上 */
+        }
 
-.modal-body form .account,
-.modal-body form .password {
-    margin: 30px;
-    width: 90%;
-    border-radius: 20px;
-}
+        #image-area img {
+            max-width: 100%;
+            /* 確保圖片不超出容器寬度 */
+            max-height: 100%;
+            /* 確保圖片不超出容器高度 */
+            object-fit: contain;
+            /* 確保圖片在容器內完整顯示並保持比例 */
+        }
 
-.remember {
-    margin-bottom: 20px;
-}
 
-.modal-body form .btn {
-    width: 100%;
-    font-size: 25px;
-    color: white;
-}
+        /* 設定 AI 回應文字區域的位置和樣式 */
+        #text-area {
+            position: absolute;
+            /* 絕對定位 */
+            top: 38%;
+            left: 50%;
+            width: 100%;
+            max-width: calc(99vh);
+            transform: translateX(-50%);
+            padding: 1rem;
+            font-size:1.5rem;
+            height: 37%;
+            /* 您可能需要根據實際圖片和內容調整這些值 */
+            /* border: 1px solid green; */
+            /* 可選：用於調試邊框 */
+            text-align: left;
+            color: #333;
+            /* 調整文字顏色 */
+            overflow-y: auto;
+            /* 如果文字超出高度，顯示捲軸 */
+            z-index: 1;
+            /* 確保它在背景圖片之上 */
+        }
 
-.full-page-link {
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    text-decoration: none;
-    color: inherit;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
+        /* 新增一個容器來放置圖片和按鈕 */
+        .bottom-right-container {
+            position: fixed;
+            /* 固定位置 */
+            bottom: 0px;
+            /* 距離底部 20px */
+            right: -50px;
+            /* 距離右側 20px */
+            display: flex;
+            /* 使用 Flexbox */
+            flex-direction: column;
+            /* 垂直堆疊內容 */
+            align-items: center;
+            /* 水平置中內容 */
+            z-index: 100;
+            /* 確保容器在最上層 */
+        }
 
-/* 設定 AI 回應的位置和樣式 */
-#ai-result {
-    position: absolute; /* 絕對定位 */
-    top: 50%; /* 垂直置中 */
-    left: 50%; /* 水平置中 */
-    transform: translate(-50%, -50%); /* 精確置中 */
-    width: 60%; /* 調整寬度 */
-    text-align: center; /* 文字置中 */
-    /* 您可能需要根據實際圖片和內容調整這些值 */
-    /* padding: 20px; */ /* 可選：增加內邊距 */
-    /* background-color: rgba(255, 255, 255, 0.8); */ /* 可選：半透明背景 */
-    /* transform: rotate(-5deg); */ /* 可選：如果需要旋轉以匹配筆記本角度 */
-    font-size: 1.5em; /* 調整字體大小 */
-    color: #333; /* 調整文字顏色 */
-    z-index: 1; /* 確保它在背景圖片之上 */
-}
+        /* 任意門圖片的樣式 */
+        .bottom-right-container img {
+            width: 400px;
+            /* 調整圖片寬度 */
+            margin-bottom: -55px;
+            /* 設定圖片和按鈕之間的間距 */
+        }
 
-/* 新增 "再產生一個道具" 按鈕的樣式 */
-.generate-again-button {
-    position: fixed; /* 固定位置 */
-    bottom: 20px; /* 距離底部 20px */
-    right: 20px; /* 距離右側 20px */
-    padding: 10px 20px; /* 內邊距 */
-    background-color: #00a1e9; /* 背景顏色 */
-    color: white; /* 文字顏色 */
-    text-decoration: none; /* 移除下劃線 */
-    border-radius: 5px; /* 圓角 */
-    font-size: 1.2em; /* 字體大小 */
-    z-index: 100; /* 確保按鈕在最上層 */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 陰影效果 */
-}
 
-.generate-again-button:hover {
-    background-color: #007bff; /* 滑鼠懸停時的背景顏色 */
-}
+        /* "再產生一個道具" 按鈕的樣式 */
+        .generate-again-button {
+            padding: 10px 20px;
+            /* 內邊距 */
+            background-color: #f9fbfc;
+            /* 背景顏色 */
+            color: rgb(5, 5, 5);
+            /* 文字顏色 */
+            text-decoration: none;
+            /* 移除下劃線 */
+            border-radius: 5px;
+            /* 圓角 */
+            font-size: 1.2em;
+            /* 字體大小 */
+            box-shadow: 2px 2px 5px rgb(255, 255, 255);
+            /* 陰影效果 */
+            /* 移除 position, bottom, right, z-index，因為它們由父容器控制 */
+            /* position: fixed; */
+            /* bottom: 20px; */
+            /* right: 20px; */
+            /* z-index: 100; */
+        }
 
+        .generate-again-button:hover {
+            background-color: #007bff;
+            /* 滑鼠懸停時的背景顏色 */
+        }
+
+
+        @media (max-aspect-ratio: 572 / 414) {
+            .bottom-right-container img{
+                width: 200px;
+            }
+        }
     </style>
 
 </head>
@@ -120,8 +234,19 @@ a {
     <!-- 移除或註解掉這個全頁連結 -->
     <!-- <a href="Page1.html" class="full-page-link" title="點擊回到第一頁"></a> -->
 
-    <!-- 取消註解 AI 回應的 div -->
-    <div id="ai-result"></div>
+    <!-- 移除或註解掉原來的 AI 回應 div -->
+    <!-- <div id="ai-result"></div> -->
+
+    <!-- 新增圖片顯示區域 -->
+    <!-- <div id="image-area"> -->
+    <!-- 這裡放置您要顯示的圖片 -->
+    <!-- 您需要將 src 替換為實際的圖片 URL -->
+    <!-- <img src="placeholder_image_url" alt="Generated Item Image">
+    </div> -->
+
+    <!-- 新增 AI 回應文字區域 -->
+    <div id="text-area"></div>
+
 
     <!-- 移除或註解掉這個連結，因為您可能不需要它了 -->
     <!-- <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">施工中，重新導向主頁</a> -->
@@ -155,30 +280,40 @@ a {
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Header -->
-                <div class="modal-header">
-                    <h3>Outcome</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <!-- Body -->
-                <div class="modal-body">
-                    <!-- 登入表單 -->
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+        <!-- 登入表單 -->
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     -->
 
     <script>
-    // 取消註解顯示 AI 回應的 JavaScript 程式碼
-    window.onload = function() {
-        var aiResult = localStorage.getItem('aiResponse') || '無AI回應';
-        document.getElementById('ai-result').innerHTML = '<strong>哆拉A夢：</strong>' + aiResult;
-    }
+        // 頁面載入時，將 AI 回應放入文字區域
+        window.onload = function () {
+            var aiResponse = localStorage.getItem('aiResponse') || '無AI回應';
+            document.getElementById('text-area').innerHTML = '<strong>哆拉A夢：</strong>' + aiResponse;
+
+            // TODO: 如果您有從後端取得圖片 URL，請在這裡設定圖片的 src
+            // var itemImage = localStorage.getItem('itemImage') || 'placeholder_image_url'; // 假設圖片 URL 儲存在 localStorage 的 itemImage 中
+            // document.querySelector('#image-area img').src = itemImage;
+        }
     </script>
 
-    <!-- 新增的 "再產生一個道具" 按鈕 -->
-    <a href="Page3.html" class="generate-again-button">再產生一個道具</a>
+    <!-- 新增一個容器來放置圖片和按鈕 -->
+    <div class="bottom-right-container">
+        <!-- 任意門圖片 -->
+        <img src="/123/src/Tool/1.png" alt="任意門" class="door" onerror="this.src='/123/src/Tool/16.png'"> <!-- 請將 '任意門圖片的URL放在這裡' 替換為您的圖片 URL -->
+        <!-- "再產生一個道具" 按鈕 -->
+        <a href="Page3.html" class="generate-again-button">再產生一個道具</a>
+    </div>
+
 
 </body>
+
 </html>

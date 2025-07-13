@@ -2,9 +2,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        
+         
         
         <style>
             html {
@@ -38,17 +36,7 @@
             }
 
             .modal-content {
-                background-color<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>: #404580;
+                background-color: #404580;
             }
 
             .modal-body form .account,
@@ -76,7 +64,7 @@
 
     </head>
     <body>
-        <audio controls autoplay>
+        <audio autoplay>
             <source src="src/拿出道具音效.mp3" type="audio/mpeg">
         </audio>
 
@@ -84,27 +72,15 @@
         <h2 id="item-title" style="text-align:center; margin-top:32px; color:#062cc6; text-shadow: 2px 2px 8px #29318b; font-size:2em;"></h2>
         <div class="modal-content" style="max-width:400px; margin: 40px auto 0 auto; background: none; border-radius: 0; box-shadow: none; border: none;">
             <div class="modal-body" style="text-align: center; background: none;">
-                <img id="item-img" src="src/Tool/4.png" style="max-width: 100%; margin: 20px 0;">
+                <img id="item-img" src="src/Tool/4.png" onerror="this.src='/123/src/Tool/16.png';document.getElementById('item-title').innerText=document.getElementById('item-title').innerText.replace('道具是','道具是四次元口袋裡的')" style="width: 100%; max-width: 600px; margin: 20px 0;">
             </div>
         </div>
         <a href="page5-outcome.html" class="btn btn-primary" style="position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em; z-index: 20;">道具介紹</a>
         <script>
-        // 取得 aiResponse 並顯示道具名稱
-        window.onload = function() {
-            // 取得 aiResponse，假設格式為 { name: '任意門', ... }
-            let aiResponse = localStorage.getItem('aiResponse');
-            let itemName = '任意門';
-            if (aiResponse) {
-                try {
-                    let data = JSON.parse(aiResponse);
-                    if (data && data.name) itemName = data.name;
-                } catch(e) {
-                    // 若不是 JSON 格式，直接顯示內容
-                    itemName = aiResponse;
-                }
-            }
-            document.getElementById('item-title').textContent = `適合你的道具是${itemName}！！`;
-        }
+            let aiResponse = localStorage.getItem('aiResponseData');
+            let data = JSON.parse(aiResponse);
+            document.getElementById('item-title').textContent = `適合你的道具是${data.item_name}！！`;
+            document.getElementById('item-img').src = data.image_url;
         </script>
     </body>
 </html>
