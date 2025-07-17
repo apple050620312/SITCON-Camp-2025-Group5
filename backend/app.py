@@ -42,8 +42,9 @@ def get_item():
         response = model.generate_content(ai_prompt)
         ai_text = response.text.strip()
         item_name = ai_text.split('道具名稱：')[-1].split('\n')[0].strip()
+        print(user_prompt)
         print("AI 原始回覆：", ai_text)
-        print("解析出道具名稱：", repr(item_name))
+        # print("解析出道具名稱：", repr(item_name))
 
         # 取得圖片連結
         image_url = tool_data.get(item_name, {}).get('圖片連結', '')
