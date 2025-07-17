@@ -26,7 +26,7 @@ SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
 def get_item():
     try:
         # 載入 tool.json
-        with open('123/data/tool.json', 'r', encoding='utf-8') as f:
+        with open('tool.json', 'r', encoding='utf-8') as f:
             tool_data = json.load(f)
         tool_names = list(tool_data.keys())
         tool_names_str = '、'.join(tool_names)
