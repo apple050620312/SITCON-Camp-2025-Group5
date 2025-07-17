@@ -48,7 +48,7 @@
         window.onload = function() {
             // 取得上一頁輸入
             const userInput = localStorage.getItem('userInput') || '';
-            fetch('https://sitcon.sangege.top/get_item', {
+            fetch('https://sitcon-backend.sangege.top/get_item', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: userInput })
