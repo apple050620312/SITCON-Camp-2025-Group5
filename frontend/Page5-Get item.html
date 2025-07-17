@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+         
+        
+        <style>
+            html {
+                height: 100%;
+            }
+
+            body {
+                background-image: url("img/page6_background_image.png");
+                background-color: #cccccc;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                background-size: cover;
+            }
+  
+            a {
+                text-decoration: none;
+                font-size: 30px;
+                color: black;
+                margin: 50px;
+            }
+
+            .modal-header h3 {
+                font-size: 20px;
+                color: white;
+                /* 置中 */
+                position: absolute;
+                top: 10%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .modal-content {
+                background-color: #404580;
+            }
+
+            .modal-body form .account,
+            .modal-body form .password {
+                margin: 30px;
+                width: 90%;
+                border-radius: 20px;
+            }
+
+            .remember {
+                margin-bottom: 20px;
+            }
+
+            .modal-body form .btn {
+                width: 100%;
+                font-size: 25px;
+                color: white;
+            }
+
+        </style>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+    </head>
+    <body>
+        <audio autoplay>
+            <source src="data/拿出道具音效.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- 動態顯示道具標題與圖片 -->
+        <h2 id="item-title" style="text-align:center; margin-top:32px; color:#062cc6; text-shadow: 2px 2px 8px #29318b; font-size:2em;"></h2>
+        <div class="modal-content" style="max-width:400px; margin: 40px auto 0 auto; background: none; border-radius: 0; box-shadow: none; border: none;">
+            <div class="modal-body" style="text-align: center; background: none;">
+                <img id="item-img" src="tool/4.png" onerror="this.src='tool/16.png';document.getElementById('item-title').innerText=document.getElementById('item-title').innerText.replace('道具是','道具是四次元口袋裡的')" style="width: 100%; max-width: 600px; margin: 20px 0;">
+            </div>
+        </div>
+        <a href="Page6-outcome.html" class="btn btn-primary" style="position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em; z-index: 20;">道具介紹</a>
+        <script>
+            let aiResponse = localStorage.getItem('aiResponseData');
+            let data = JSON.parse(aiResponse);
+            document.getElementById('item-title').textContent = `適合你的道具是${data.item_name}！！`;
+            document.getElementById('item-img').src = data.image_url;
+        </script>
+    </body>
+</html>
