@@ -42,7 +42,7 @@ def get_item():
         response = model.generate_content(ai_prompt)
         ai_text = response.text.strip()
         item_name = ai_text.split('道具名稱：')[-1].split('\n')[0].strip()
-        print(user_prompt)
+        print("使用者要求：", user_prompt)
         print("AI 原始回覆：", ai_text)
         # print("解析出道具名稱：", repr(item_name))
 
@@ -65,4 +65,4 @@ def get_item():
         return jsonify({"error": "後端錯誤：" + str(e), "images": [], "item_name": item_name}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=50618)
